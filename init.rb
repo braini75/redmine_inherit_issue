@@ -8,5 +8,6 @@ Redmine::Plugin.register :redmine_inherit_issue do
   require_dependency 'hooks'
   
   settings :default => {
+    :ancestor_notset_only => 0
     }, :partial => 'settings/inherit_issue_settings' 
 end
