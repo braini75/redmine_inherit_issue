@@ -3,7 +3,7 @@
     <tr>
       <th><%= l(:settings_inherit_issue_caption)%></th>
       <td>
-      	<%= select_tag 'settings[ancestor_attribute]', options_for_select(CustomField.all.collect {|t| [ t.name, t.id ] }, settings['ancestor_attribute'])%>
+      	<%= select_tag 'settings[ancestor_attribute]', options_for_select(CustomField.all.collect {|t| [ t.name, t.id ] }, settings['ancestor_attribute']), prompt: 'Select'%>
       </td>
       <td><%= l(:settings_inherit_issue_help)%></td>            
     </tr>

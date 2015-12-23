@@ -29,11 +29,11 @@ def get_first_ancestor_with_attribute(issue,custom_field_id=nil)
             return "n.a."             
           end          
 end
+    
   
-  @custom_field_id=Setting.plugin_redmine_inherit_issue['ancestor_attribute'].to_i
-  
-  unless @custom_field_id.nil?
-	 @custom_field_name=CustomField.find(31).name
+  unless Setting.plugin_redmine_inherit_issue['ancestor_attribute'].empty?
+  	@custom_field_id=Setting.plugin_redmine_inherit_issue['ancestor_attribute'].to_i
+	 @custom_field_name=CustomField.find(@custom_field_id).name
 	 @idx= @issue.editable_custom_fields.find_index{ |custom_field| custom_field.id==@custom_field_id}	 
 	%>
 	<div class="attribute">
