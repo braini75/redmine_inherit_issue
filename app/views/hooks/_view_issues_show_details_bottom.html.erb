@@ -35,7 +35,7 @@ def get_first_ancestor_with_attribute(issue,custom_field_id=nil)
 end
     
   
-  unless Setting.plugin_redmine_inherit_issue['ancestor_attribute'].empty?
+  unless Setting.plugin_redmine_inherit_issue['ancestor_attribute'].nil?
   	 @custom_field_id=Setting.plugin_redmine_inherit_issue['ancestor_attribute'].to_i
 	 @custom_field_name=CustomField.find(@custom_field_id).name
 
