@@ -13,9 +13,11 @@ def get_first_ancestor_with_attribute(issue,custom_field_id=nil)
           idx= issue.available_custom_fields.find_index{ |custom_field| custom_field.id==custom_field_id}
   
           if Setting.plugin_redmine_inherit_issue['ancestor_notset_only'].to_i > 0
+          	unless issue.custom_field_values[idx].value.nil?
              if issue.custom_field_values[idx].value.length > 0
                return "n.a."
              end
+            end
           end
   
           unless issue.parent.nil?
