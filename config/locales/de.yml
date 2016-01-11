@@ -1,0 +1,11 @@
+# German strings go here for Rails i18n
+de:
+  # my_label: "My label"
+  short_tag:                      "geerbt"
+  view_attribute_label:           "Ticket Attribut des Vorfahren"
+  settings_inherit_issue_caption: "Ticket Attribut des Vorfahren:"
+  settings_inherit_issue_help:    "erzeugt eine neue Anzeige dieses Attributs für Untertickets."  
+  settings_inherit_issue_notset_only:     "Nicht bei Wurzel Ticket:"
+  settings_inherit_issue_notset_only_help: "Zeigt den Wert des Vorfahren nur dann, wenn im momentanen Ticket das Attribut nicht gesetzt ist."
+  settings_inherit_issue_description: "Wähle ein Feld aus, welches in allen Subtickets angezeigt werden soll. 
+  Es werden alle Vorfahren des Tickets nach dem Attribut abgesucht und die Anzeige der Attribute um ein Feld erweitert und dort der erste Treffer angezeigt."

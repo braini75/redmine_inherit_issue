@@ -1,8 +1,11 @@
 # English strings go here for Rails i18n
 en:
   # my_label: "My label"
+  short_tag:                      "inherited"
   view_attribute_label:           "Ancestor Issue Attribute"
   settings_inherit_issue_caption: "Ancestor Issue Attribute:"
   settings_inherit_issue_help:    "Value of ancestor Custom field to display in child."  
-  settings_inherit_issue_notset_only:     "Only if not set in current issue:"
-  settings_inherit_issue_notset_only_help: "Find ancestor attribute only, if attribute is not set in curret issue."
+  settings_inherit_issue_notset_only:     "Do not show at root:"
+  settings_inherit_issue_notset_only_help: "Find ancestor attribute only, if attribute is not set in current issue."
+  settings_inherit_issue_description: "Select a custom field you aim to show in all sub issues. All parent issues will be search for that custom field. 
+  First hit will be appended as an additional field to the Custom Fields section for each Issue."

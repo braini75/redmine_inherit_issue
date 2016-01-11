@@ -3,8 +3,7 @@
 Redmine 2.x, (3.x)
 
 == Description:
-This Plugin allows to specify a customfield (please specify with plugin configuration) and shows the first occurence found, while walking through the genealogical tree of that issue.
-
+This Plugin allows to specify a custom_field (see Configuration) and search the first occurrence found, while walking through the genealogical tree of that issue. That value, if found, will be appended as an additional field to the Custom Fields section for each Issue. If nothing found it is set to "n.a." (not available).
 
 == Installation
 1. go to `{REDMINE_ROOT}/plugin` directory.
@@ -16,8 +15,8 @@ This Plugin allows to specify a customfield (please specify with plugin configur
 
 == Usage
 1. Select an issue.
-2. find an extra Entry at the very bottom of the custom fields
+2. find an extra Entry (custom_field name + "(inherited)") at the very bottom of the custom fields section
 
 == Configuration
 1. Choose the custom field used with the plugin
-2. Select "Only if not set in current issue:" if the plugin should not search ancestors if the attribute is already set in current issue.
+2. Select "Do not show at root:" if the plugin should not search ancestors if the attribute is already set in current issue.
