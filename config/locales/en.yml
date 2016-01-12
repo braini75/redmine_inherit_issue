@@ -9,3 +9,5 @@ en:
   settings_inherit_issue_notset_only_help: "Find ancestor attribute only, if attribute is not set in current issue."
   settings_inherit_issue_description: "Select a custom field you aim to show in all sub issues. All parent issues will be search for that custom field. 
   First hit will be appended as an additional field to the Custom Fields section for each Issue."
+  settings_inherit_issue_hide:      "Hide, if no ancestor value found."
+  settings_inherit_issue_hide_help: "Shows an additional field only, if any ancestor value available."  

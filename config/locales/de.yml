@@ -9,3 +9,5 @@ de:
   settings_inherit_issue_notset_only_help: "Zeigt den Wert des Vorfahren nur dann, wenn im momentanen Ticket das Attribut nicht gesetzt ist."
   settings_inherit_issue_description: "Wähle ein Feld aus, welches in allen Subtickets angezeigt werden soll. 
   Es werden alle Vorfahren des Tickets nach dem Attribut abgesucht und die Anzeige der Attribute um ein Feld erweitert und dort der erste Treffer angezeigt."
+  settings_inherit_issue_hide:      "Verbergen, wenn Vorfahre nicht verfügbar:"
+  settings_inherit_issue_hide_help: "Zeigt geerbte Werte nur, wenn gültige Werte bei einem Vorfahren gefunden wurden."  
