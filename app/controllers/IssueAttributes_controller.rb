@@ -1,3 +1,0 @@
-class IssueAttributesController < ApplicationController
-  
-end

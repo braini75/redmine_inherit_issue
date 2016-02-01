@@ -1,4 +1,5 @@
-module IssueAttribute  
+module IssueAttributes
+ 
     class Hooks < Redmine::Hook::ViewListener    
         # Hooks for the Redmine-Plugin redmine_inherit_issue
         # 
@@ -7,12 +8,13 @@ module IssueAttribute
         # This class holds all hooks for redmine_inherit_issue     
 
         def view_issues_show_details_bottom(context={})         
-          
           context[:controller].send(:render_to_string, {
-            :partial => 'hooks/view_issues_show_details_bottom'
+            :partial => 'hooks/view_issues_show_details_bottom',
+            :locals => context
           })
-        end
+        end        
         
+
     end  
 end
   
