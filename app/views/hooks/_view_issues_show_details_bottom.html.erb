@@ -1,12 +1,11 @@
 <%
 def get_first_ancestor_with_attribute(issue,custom_field_id=nil)
-	logger.info "------------- Try to find ancestor from: #{issue} ---------------------"  
+#	logger.info "------------- Try to find ancestor from: #{issue} ---------------------"  
 	unless issue.nil?				                    
 	    if custom_field_id.nil?
 	            custom_field_id=(Setting.plugin_redmine_inherit_issue['ancestor_attribute']).to_i
 	    end
-	    logger.info "------------- custom_field_id: #{custom_field_id} -----------------"
-	          
+#	    logger.info "------------- custom_field_id: #{custom_field_id} -----------------"	          
 	
 		# Special case: return "n.a.", if we have a (new) parent or root
 	    if Setting.plugin_redmine_inherit_issue['ancestor_notset_only'].to_i > 0
@@ -18,24 +17,26 @@ def get_first_ancestor_with_attribute(issue,custom_field_id=nil)
 	       	end
 	    end
  
-         unless issue.parent.nil?
+        unless issue.parent.nil?
          	idx= issue.parent.available_custom_fields.find_index{ |custom_field| custom_field.id==custom_field_id}
          	unless idx.nil?
-           	logger.info "Call------------IDX: #{idx} ----------- VAL: #{issue.parent.custom_field_values[idx].value} ----laenge: #{issue.parent.custom_field_values[idx].value.length}"	      
-           	if issue.parent.custom_field_values[idx].value.length > 0
-             		# return first occurence of the attribute
+         		#
+         		# HIT! custom_field is found at parent
+         		# 
+           		logger.info "Call------------IDX: #{idx} ----------- VAL: #{issue.parent.custom_field_values[idx].value} ----laenge: #{issue.parent.custom_field_values[idx].value.length}"	      
+           		if issue.parent.custom_field_values[idx].value.length > 0
+             		# return only if not empty
              		return issue.parent.custom_field_values[idx].value
              	end
-           else
-             		get_first_ancestor_with_attribute(issue.parent,custom_field_id)          
-           end 	      
-         else
+           	end 	 
+           	
+           	# NO Hit: check parent:
+           	get_first_ancestor_with_attribute(issue.parent,custom_field_id)     
+        else
            # nothing found
            return "n.a."             
-         end	
-	end
-                
-	                    
+        end	
+	end                	                   
 end
     
   
@@ -45,6 +46,7 @@ end
 	 @custom_field_name=CustomField.find(@custom_field_id).name
 	 
 	 @ancestor_value=get_first_ancestor_with_attribute(@issue)
+	 @test=test12()
 	 unless @ancestor_value == "n.a." and Setting.plugin_redmine_inherit_issue['ancestor_notset_hide'].to_i == 1	 
 		%>
 		
