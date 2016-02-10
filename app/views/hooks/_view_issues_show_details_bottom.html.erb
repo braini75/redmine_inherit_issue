@@ -1,23 +1,25 @@
 <%
   unless Setting.plugin_redmine_inherit_issue['ancestor_attribute'].nil?
   	unless Setting.plugin_redmine_inherit_issue['ancestor_attribute'].empty?
-  	 @custom_field_id=Setting.plugin_redmine_inherit_issue['ancestor_attribute'].to_i
-	 @custom_field_name=CustomField.find(@custom_field_id).name
-	 
-	 @ancestor_value=@issue.find_ancestor_attribute
-
-	 unless @ancestor_value == "n.a." and Setting.plugin_redmine_inherit_issue['ancestor_notset_hide'].to_i == 1	 
-		%>
+	  	 @custom_field_id=Setting.plugin_redmine_inherit_issue['ancestor_attribute'].to_i
+		 @custom_field_name=CustomField.find(@custom_field_id).name
+		 unless issue.nil?
+		 	
+			 @ancestor_value=issue.find_ancestor_attribute
 		
-		<div class="attribute">
-			<tr><th class="label">	<!-- for compatibility with redmine 2.x-->
-			<div class="label">
-				<span title="<%=l(:view_attribute_label)%>" class="field-description"><%=@custom_field_name%>(<%=l(:short_tag)%>):</span>
-			</div>
-			</th><td class="value">	<!-- for compatibility with redmine 2.x-->
-			<div class="value">	<%=@ancestor_value%>	</div>
-			</td><td></td></tr>		<!-- for compatibility with redmine 2.x-->
-		</div>
-	 <%end%>		
+			 unless @ancestor_value == "n.a." and Setting.plugin_redmine_inherit_issue['ancestor_notset_hide'].to_i == 1	 
+				%>
+				
+				<div class="attribute">
+					<tr><th class="label">	<!-- for compatibility with redmine 2.x-->
+					<div class="label">
+						<span title="<%=l(:view_attribute_label)%>" class="field-description"><%=@custom_field_name%>(<%=l(:short_tag)%>):</span>
+					</div>
+					</th><td class="value">	<!-- for compatibility with redmine 2.x-->
+					<div class="value">	<%=@ancestor_value%>	</div>
+					</td><td></td></tr>		<!-- for compatibility with redmine 2.x-->
+				</div>
+			 <%end%>
+		 <%end%>		
 	<%end%>
 <%end%>

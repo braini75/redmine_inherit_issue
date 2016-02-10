@@ -5,7 +5,6 @@ require_dependency 'issue'
 
 module IssuePatch
   def self.included(base) # :nodoc:
-    base.extend(ClassMethods)
 
     base.send(:include, InstanceMethods)
 
@@ -16,10 +15,6 @@ module IssuePatch
       
     end
 
-  end
-  
-  module ClassMethods
-    
   end
   
   module InstanceMethods
@@ -55,9 +50,7 @@ module IssuePatch
         else
            # nothing found
            return "n.a."        
-      end      
-
-      
+      end            
     end
   end    
 end
