@@ -27,7 +27,7 @@ module IssuePatch
           idx= self.available_custom_fields.find_index{ |custom_field| custom_field.id==custom_field_id}
         unless idx.nil?       
             if self.custom_field_values[idx].value.to_s.length > 0
-                return "n.a."
+                return ""
             end
         end
       end
@@ -38,8 +38,8 @@ module IssuePatch
             #
             # HIT! custom_field is found at parent
             # 
-              logger.info "Call------------IDX: #{idx} ----------- VAL: #{self.parent.custom_field_values[idx].value} ----laenge: #{self.parent.custom_field_values[idx].value.length}"       
-              if self.parent.custom_field_values[idx].value.length > 0
+              logger.info "Call------------IDX: #{idx} ----------- VAL: #{self.parent.custom_field_values[idx].value} ----laenge: #{self.parent.custom_field_values[idx].value.to_s.length}"       
+              if self.parent.custom_field_values[idx].value.to_s.length > 0
                 # return only if not empty
                 return self.parent.custom_field_values[idx].value
               end
@@ -49,7 +49,7 @@ module IssuePatch
             self.parent.find_ancestor_attribute
         else
            # nothing found
-           return "n.a."        
+           return ""        
       end            
     end
   end    
