@@ -7,7 +7,7 @@
 		 	
 			 @ancestor_value=issue.find_ancestor_attribute
 		
-			 unless @ancestor_value == "n.a." and Setting.plugin_redmine_inherit_issue['ancestor_notset_hide'].to_i == 1	 
+			 unless @ancestor_value == "" and Setting.plugin_redmine_inherit_issue['ancestor_notset_hide'].to_i == 1	 
 				%>
 				
 				<div class="attribute">
