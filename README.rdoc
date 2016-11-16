@@ -1,4 +1,5 @@
 = Redmine Plugin: Inherit value from ancestors customfield
+[![Build Status](https://travis-ci.org/braini75/redmine_inherit_issue.svg?branch=master)] (https://travis-ci.org/braini75/redmine_inherit_issue)
 == Requirements 
 Redmine 2.x, 3.x
 
@@ -18,5 +19,4 @@ This Plugin allows to specify a custom_field (see Configuration) and search the 
 2. find an extra Entry (custom_field name + "(inherited)") at the very bottom of the custom fields section
 
 == Configuration
-1. Choose the custom field used with the plugin
-2. Select "Do not show at root:" if the plugin should not search ancestors if the attribute is already set in current issue.
+1. Select the custom field used with the plugin (Global settings)

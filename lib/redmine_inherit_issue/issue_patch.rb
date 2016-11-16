@@ -19,8 +19,8 @@ module RedmineInheritIssue
 			def find_ancestor_attribute
 			  custom_field_id=(Setting.plugin_redmine_inherit_issue['ancestor_attribute']).to_i
 			  
-			  # Special case: return "n.a.", if we have a (new) parent or root
-			  if Setting.plugin_redmine_inherit_issue['ancestor_notset_only'].to_i > 0
+			  # Special case: return "", if we have a (new) parent or root
+			  if Setting.plugin_redmine_inherit_issue['root_hide'].to_i > 0
 				idx= self.available_custom_fields.find_index{ |custom_field| custom_field.id==custom_field_id}
 				unless idx.nil?       
 					if self.custom_field_values[idx].value.to_s.length > 0

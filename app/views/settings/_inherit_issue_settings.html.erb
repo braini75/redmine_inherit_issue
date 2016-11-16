@@ -11,8 +11,8 @@
     <tr>
       <th><%= l(:settings_inherit_issue_notset_only)%></th>
       <td>
-      	<%= hidden_field_tag "settings[ancestor_notset_only]", 0 %>
-  		<%= check_box_tag "settings[ancestor_notset_only]", 1, @settings['ancestor_notset_only'].to_i == 1 %>
+      	<%= hidden_field_tag "settings[root_hide]", 0 %>
+  		<%= check_box_tag "settings[root_hide]", 1, @settings['root_hide'].to_i == 1 %>
       </td>
       <td><%= l(:settings_inherit_issue_notset_only_help)%></td>            
     </tr>
