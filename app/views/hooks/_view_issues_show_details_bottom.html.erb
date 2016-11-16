@@ -22,13 +22,19 @@
    end%>
 
 <% if render_extra %>
+	<% if Redmine::VERSION::MAJOR >= 3 %>
 				<div class="attribute">
-					<tr><th class="label">	<!-- for compatibility with redmine 2.x-->
 					<div class="label">
 						<span title="<%=l(:view_attribute_label)%>" class="field-description"><%=@custom_field_name%>*:</span>
 					</div>
-					</th><td class="value">	<!-- for compatibility with redmine 2.x-->
 					<div id="inherit_<%=@custom_field_name%>" class="value">	<%=@ancestor_value%>	</div>
-					</td><td></td></tr>		<!-- for compatibility with redmine 2.x-->
 				</div>
+	<%else%>
+					<tr>
+					<th class="label">
+						<span title="<%=l(:view_attribute_label)%>" class="field-description"><%=@custom_field_name%>*:</span>
+					</th>
+					<td class="value" id="inherit_<%=@custom_field_name%>"><%=@ancestor_value%></td>
+					<td></td>
+	<%end%>
 <%end%>

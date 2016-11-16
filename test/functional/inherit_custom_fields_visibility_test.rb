@@ -45,8 +45,12 @@ class RedmineInheritIssue::InheritIssuesCustomFieldsVisibilityTest < ActionContr
 				unless issue.parent.nil? 
 					ancestor_val = issue.find_ancestor_attribute
 					assert_equal ancestor_val, 'Value0'
-					assert_select "span:match('title', ?)", I18n.t(:view_attribute_label) , {:count=>1, :text=>"#{custom_field.name}*:"}, "Label for CustomField: \"#{custom_field.name}*:\" error"
-					assert_select "div:match('id', ?)", "inherit_#{custom_field.name}", {:count=>1, :text=>"#{ancestor_val}"}, "Ancestor Value: \"#{ancestor_val}\" not found"
+					assert_select 'span', {:text => "#{custom_field.name}*:", :count => 1}, "Label for CustomField: \"#{custom_field.name}*:\" error"
+					if Redmine::VERSION::MAJOR < 3
+						assert_select 'td', {:count=>1, :text=>"#{ancestor_val}"}, "Ancestor Value: \"#{ancestor_val}\" not found"
+					else
+						assert_select "div:match('id', ?)", "inherit_#{custom_field.name}", {:count=>1, :text=>"#{ancestor_val}"}, "Ancestor Value: \"#{ancestor_val}\" not found"
+					end
 				end
 			end	
 			
@@ -60,18 +64,18 @@ class RedmineInheritIssue::InheritIssuesCustomFieldsVisibilityTest < ActionContr
 		Setting.plugin_redmine_inherit_issue['root_hide'] = "1"
 		Setting.plugin_redmine_inherit_issue['ancestor_notset_hide'] = "0"
 		get :show, id: @issue1.id
-		assert_select "div:match('id', ?)", "inherit_#{custom_field.name}", {:count=>0}, "Hide at root does not work"
+		assert_select 'span', {:text => "#{custom_field.name}*:", :count => 0}, "Hide at root does not work"
 		
 		#2 should show empty value at root level
 		Setting.plugin_redmine_inherit_issue['root_hide'] = "0"
 		Setting.plugin_redmine_inherit_issue['ancestor_notset_hide'] = "0"
 		get :show, id: @issue1.id
-		assert_select "div:match('id', ?)", "inherit_#{custom_field.name}", {:count=>1}, "Show empty at root does not work"
+		assert_select 'span', {:text => "#{custom_field.name}*:", :count => 1}, "Show empty at root does not work"
 		
 		#3 hide if ancestor notset
 		Setting.plugin_redmine_inherit_issue['root_hide'] = "0"
 		Setting.plugin_redmine_inherit_issue['ancestor_notset_hide'] = "1"
 		get :show, id: @issue1.id
-		assert_select "div:match('id', ?)", "inherit_#{custom_field.name}", {:count=>0}, "Hide empty ancestor value not working"
+		assert_select 'span', {:text => "#{custom_field.name}*:", :count => 0}, "Hide empty ancestor value not working"
 	end
 end
