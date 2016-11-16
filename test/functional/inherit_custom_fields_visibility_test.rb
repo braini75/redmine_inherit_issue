@@ -5,10 +5,8 @@ require File.expand_path('../../test_helper', __FILE__)
 class RedmineInheritIssue::InheritIssuesCustomFieldsVisibilityTest < ActionController::TestCase
 	tests IssuesController
     fixtures :projects,
-		   :users, :email_addresses, :user_preferences,
+		   :users,
 		   :roles,
-		   :members,
-		   :member_roles,
 		   :issue_statuses,
 		   :trackers,
 		   :projects_trackers,
