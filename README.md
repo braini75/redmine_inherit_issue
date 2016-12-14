@@ -1,5 +1,5 @@
-Redmine Plugin: Inherit value from ancestors customfield [![Build Status](https://travis-ci.org/braini75/redmine_inherit_issue.svg?branch=master)] (https://travis-ci.org/braini75/redmine_inherit_issue)
-
+[![Build Status](https://travis-ci.org/braini75/redmine_inherit_issue.svg?branch=master)] (https://travis-ci.org/braini75/redmine_inherit_issue)
+#Redmine Plugin: Inherit value from ancestors customfield 
 __Requirements__:
 Redmine 2.x, 3.x
 
