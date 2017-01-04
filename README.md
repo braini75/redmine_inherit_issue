@@ -6,7 +6,7 @@ Redmine 2.x, 3.x
 
 
 __Description__:
-This Plugin allows to specify a custom_field (see Configuration) and search the first occurrence found, while walking through the genealogical tree of that issue. That value, if found, will be appended as an additional field to the Custom Fields section for each Issue. If nothing found it is set to "n.a." (not available).
+This Plugin allows to specify a custom_field (see Configuration) and search the first occurrence found, while walking through the genealogical tree of that issue. That value, if found, will be appended as an additional field to the Custom Fields section for each Issue. 
 
 __Installation__:
 * go to `{REDMINE_ROOT}/plugin` directory.
@@ -22,6 +22,8 @@ git clone https://github.com/braini75/redmine_inherit_issue.git
 __Usage__:
 * Select an issue.
 * find an extra Entry (custom_field name + "(inherited)") at the very bottom of the custom fields section
-
-__Configuration__:
 * Select the custom field used with the plugin (Global settings)
+
+__ChangeLog__:  
+[1.2] Issue list will show inherit custom_field  
+[1.1] Initial Checking  
