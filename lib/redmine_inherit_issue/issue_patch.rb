@@ -17,7 +17,7 @@ module RedmineInheritIssue
 		
 		module InstanceMethods
 			def find_ancestor_attribute
-			  custom_field_id=(Setting.plugin_redmine_inherit_issue['ancestor_attribute']).to_i
+			  custom_field_id=get_custom_field_id
 			  
 			  # Special case: return "", if we have a (new) parent or root
 			  if Setting.plugin_redmine_inherit_issue['root_hide'].to_i > 0

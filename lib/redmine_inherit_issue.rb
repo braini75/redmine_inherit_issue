@@ -1,8 +1,9 @@
-module RedmineInheritIssue
+module RedmineInheritIssue	
+	#include InheritIssuesHelper
 
-	
-	def	self.setup
+	def	self.setup	   
 		IssuePatch.apply
+		QueriesHelperPatch.apply	
 	end
 	
 	module IssueAttributes

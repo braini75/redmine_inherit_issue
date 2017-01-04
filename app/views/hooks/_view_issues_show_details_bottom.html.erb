@@ -1,14 +1,14 @@
 <%
   render_extra = false
-  unless Setting.plugin_redmine_inherit_issue['ancestor_attribute'].nil?
-  	unless Setting.plugin_redmine_inherit_issue['ancestor_attribute'].empty? or (issue.parent.nil? and Setting.plugin_redmine_inherit_issue['root_hide'] == 1)
-	  	 @custom_field_id=Setting.plugin_redmine_inherit_issue['ancestor_attribute'].to_i
-		 @custom_field_name=CustomField.find(@custom_field_id).name
+  if ii_enabled
+  	unless issue.parent.nil? and Setting.plugin_redmine_inherit_issue['root_hide'] == 1
+	  	 @custom_field_id=get_custom_field_id
+		 @custom_field_name=get_custom_field_name
 		 unless issue.nil?
 		 	
-			 @ancestor_value=issue.find_ancestor_attribute
+			@ancestor_value=issue.find_ancestor_attribute
 		
-			 unless @ancestor_value == "" and Setting.plugin_redmine_inherit_issue['ancestor_notset_hide'].to_i == 1
+			unless @ancestor_value == "" and Setting.plugin_redmine_inherit_issue['ancestor_notset_hide'].to_i == 1
 				render_extra = true
 				%>
 				

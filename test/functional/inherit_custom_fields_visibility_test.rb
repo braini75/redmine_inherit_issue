@@ -1,9 +1,12 @@
 require File.expand_path('../../test_helper', __FILE__)
 
 #require 'projects_controller'
+include InheritIssuesHelper
 
 class RedmineInheritIssue::InheritIssuesCustomFieldsVisibilityTest < ActionController::TestCase
 	tests IssuesController
+	include QueriesHelper
+	
     fixtures :projects,
 		   :users,
 		   :roles,
@@ -13,6 +16,8 @@ class RedmineInheritIssue::InheritIssuesCustomFieldsVisibilityTest < ActionContr
 		   :enabled_modules,
 		   :enumerations,
 		   :workflows
+	
+	include Redmine::I18n
 	
 	def setup
 		CustomField.delete_all
@@ -31,15 +36,39 @@ class RedmineInheritIssue::InheritIssuesCustomFieldsVisibilityTest < ActionContr
 			:custom_field_values => {@field1.id => 'Value0'}
 		)
 		
-		@issues << @issue2 = Issue.generate!( :author_id => 1, :project_id => 1, :tracker_id => 1, :subject => 'First Child', :parent_issue_id => @issue1.id, :root_id => 1)
-		@issues << @issue3 = Issue.generate!( :author_id => 1, :project_id => 1, :tracker_id => 1, :subject => 'First Grand Child', :parent_issue_id => @issue2.id, :root_id => 1)
+		@issues << @issue2 = Issue.create!( :author_id => 1, :project_id => 1, :tracker_id => 1, :subject => 'First Child', :parent_issue_id => @issue1.id, :root_id => 1)
+		@issues << @issue3 = Issue.create!( :author_id => 1, :project_id => 1, :tracker_id => 1, :subject => 'First Grand Child', :parent_issue_id => @issue2.id, :root_id => 1)
+
 	end
 	
-	test 'test for correct inheritance' do
+	def test_index_with_csv
+		Setting.plugin_redmine_inherit_issue['ancestor_attribute'] = CustomField.first.id.to_s	
+		column_name="cf_#{get_custom_field_id}"		
+
+
+		get :index, :format => 'csv', :csv => {:columns => 'all'}
+		assert_response :success
+		@issues.each do |issue|
+		  	issue_line = response.body.chomp.split("\n").map {|line| line.split(',')}.detect {|line| line[0]==issue.id.to_s}
+			assert_include 'Value0', issue_line
+		end		
+	end
+	
+	def test_index_with_custom_field_column
+		Setting.plugin_redmine_inherit_issue['ancestor_attribute'] = CustomField.first.id.to_s
+		column_name="cf_#{get_custom_field_id}"
+		get :index, :c => [column_name]
+		assert_response :success
+
+		assert_select "table.issues td.#{column_name}.string"
+		assert_select 'td', {:count=>@issues.count, :text=>"Value0"} 
+    end
+
+	
+	test 'test for correct inheritance at single issue' do
 		CustomField.all.each do |custom_field|
-			Setting.plugin_redmine_inherit_issue['ancestor_attribute'] = custom_field.id.to_s
-#			@custom_field_name = CustomField.find(custom_field.id).name
-#			assert_equal custom_field.name, @custom_field_name
+			Setting.plugin_redmine_inherit_issue['ancestor_attribute'] = custom_field.id.to_s			
+			
 			@issues.each do |issue|
 				get :show, id: issue.id
 				unless issue.parent.nil? 
