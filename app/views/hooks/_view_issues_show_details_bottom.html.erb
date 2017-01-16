@@ -22,19 +22,10 @@
    end%>
 
 <% if render_extra %>
-	<% if Redmine::VERSION::MAJOR >= 3 %>
-				<div class="attribute">
-					<div class="label">
-						<span title="<%=l(:view_attribute_label)%>" class="field-description"><%=@custom_field_name%>*:</span>
-					</div>
-					<div id="inherit_<%=@custom_field_name%>" class="value">	<%=@ancestor_value%>	</div>
-				</div>
-	<%else%>
-					<tr>
-					<th class="label">
-						<span title="<%=l(:view_attribute_label)%>" class="field-description"><%=@custom_field_name%>*:</span>
-					</th>
-					<td class="value" id="inherit_<%=@custom_field_name%>"><%=@ancestor_value%></td>
-					<td></td>
-	<%end%>
+	<div class="attribute">
+		<div class="label">
+			<span title="<%=l(:view_attribute_label)%>" class="field-description"><%=@custom_field_name%>*:</span>
+		</div>
+		<div id="inherit_<%=@custom_field_name%>" class="value">	<%=@ancestor_value%>	</div>
+	</div>
 <%end%>

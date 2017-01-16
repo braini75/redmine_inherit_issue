@@ -75,11 +75,7 @@ class RedmineInheritIssue::InheritIssuesCustomFieldsVisibilityTest < ActionContr
 					ancestor_val = issue.find_ancestor_attribute
 					assert_equal ancestor_val, 'Value0'
 					assert_select 'span', {:text => "#{custom_field.name}*:", :count => 1}, "Label for CustomField: \"#{custom_field.name}*:\" error"
-					if Redmine::VERSION::MAJOR < 3
-						assert_select 'td', {:count=>1, :text=>"#{ancestor_val}"}, "Ancestor Value: \"#{ancestor_val}\" not found"
-					else
-						assert_select "div:match('id', ?)", "inherit_#{custom_field.name}", {:count=>1, :text=>"#{ancestor_val}"}, "Ancestor Value: \"#{ancestor_val}\" not found"
-					end
+					assert_select "div:match('id', ?)", "inherit_#{custom_field.name}", {:count=>1, :text=>"#{ancestor_val}"}, "Ancestor Value: \"#{ancestor_val}\" not found"
 				end
 			end	
 			

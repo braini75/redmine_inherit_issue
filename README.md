@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/braini75/redmine_inherit_issue.svg?branch=master)] (https://travis-ci.org/braini75/redmine_inherit_issue)
 #Redmine Plugin: Inherit value from ancestors customfield 
 __Requirements__:
-Redmine 2.x, 3.x
+Redmine 3.x
 
 
 
@@ -24,6 +24,7 @@ __Usage__:
 * find an extra Entry (custom_field name + "(inherited)") at the very bottom of the custom fields section
 * Select the custom field used with the plugin (Global settings)
 
-__ChangeLog__:  
+__ChangeLog__:
+[1.3] Remove Redmine 2.x support
 [1.2] Issue list will show inherit custom_field  
 [1.1] Initial Checking  

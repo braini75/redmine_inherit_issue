@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.0
+  - 2.1
   - 2.3.0
 
 branches:
@@ -10,8 +10,7 @@ branches:
 addons:
   postgresql: "9.4"
 
-env:
-  - REDMINE_VER=2.6-stable
+env:  
   - REDMINE_VER=3.2-stable
   - REDMINE_VER=master
 
