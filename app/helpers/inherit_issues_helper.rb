@@ -1,6 +1,7 @@
 module InheritIssuesHelper
 	def ii_enabled
-		unless Setting.plugin_redmine_inherit_issue['ancestor_attribute'].empty? or Setting.plugin_redmine_inherit_issue['ancestor_attribute'].nil?
+#		unless Setting.plugin_redmine_inherit_issue['ancestor_attribute'].empty? or Setting.plugin_redmine_inherit_issue['ancestor_attribute'].nil?
+		unless Setting.plugin_redmine_inherit_issue['ancestor_attribute'].blank?
 			true
 		else
 			false
