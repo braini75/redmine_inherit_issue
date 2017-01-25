@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmine_inherit_issue do
   
   settings :default => {
     :root_hide => 1,
-	:ancestor_notset_hide => 1,
+    :ancestor_notset_hide => 1,
     :ancestor_attribute   => nil,
     }, :partial => 'settings/inherit_issue_settings' 
 end
