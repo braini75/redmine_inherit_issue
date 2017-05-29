@@ -33,7 +33,7 @@ class RedmineInheritIssue::InheritIssuesCustomFieldsVisibilityTest < ActionContr
 			:project_id => 1,
 			:tracker_id => 1,
 			:subject => 'Root Issue',
-			:custom_field_values => {@field1.id => 'Value0'}
+			:custom_field_values => { @field1.id => 'Value0'}
 		)
 		
 		@issues << @issue2 = Issue.create!( :author_id => 1, :project_id => 1, :tracker_id => 1, :subject => 'First Child', :parent_issue_id => @issue1.id, :root_id => 1)
@@ -46,7 +46,7 @@ class RedmineInheritIssue::InheritIssuesCustomFieldsVisibilityTest < ActionContr
 		column_name="cf_#{get_custom_field_id}"		
 
 
-		get :index, :format => 'csv', :csv => {:columns => 'all'}
+		get :index, :format => 'csv', :c => [column_name], :csv => {:columns => 'all'}
 		assert_response :success
 		@issues.each do |issue|
 		  	issue_line = response.body.chomp.split("\n").map {|line| line.split(',')}.detect {|line| line[0]==issue.id.to_s}
